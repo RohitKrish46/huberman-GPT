@@ -1,1 +1,1 @@
-# hubberman-GPT
+# huberman-GPT
