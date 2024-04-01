@@ -1,0 +1,10 @@
+
+/data_raw
+/huberman_txt
+data/NDT_input.txt
+data/Rogan_input.txt
+data/joe_rogan_episodes.txt
+models/rogan_model.pth
+models/keypoints_model.pth
+notebooks/.ipynb_checkpoints/Transformer_modelling-checkpoint.ipynb
+notebooks/.ipynb_checkpoints/data_cleaning-checkpoint.ipynb

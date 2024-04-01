@@ -3,22 +3,35 @@ import torch.nn as nn
 from torch.nn import functional as F
 
 # hyperparameters
-batch_size = 64
-block_size = 256
+# batch_size = 64
+# block_size = 256
+# max_iters = 5000
+# eval_interval = 500
+# learning_rate = 3e-4
+# device = 'cuda' if torch.cuda.is_available() else 'cpu'
+# eval_iters = 200
+# n_embed = 384
+# n_head = 6
+# n_layer = 6
+# dropout = 0.2
+# --------------
+
+# hyperparameters
+batch_size = 64 # how many independent sequences will we process in parallel?
+block_size = 420 # what is the maximum context length for predictions?
 max_iters = 5000
 eval_interval = 500
 learning_rate = 3e-4
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 eval_iters = 200
-n_embed = 384
-n_head = 6
-n_layer = 6
+n_embed = 320
+n_head = 5
+n_layer = 5
 dropout = 0.2
-# --------------
 
 torch.manual_seed(1337)
 
-with open('data/input.txt', 'r', encoding = 'utf-8') as f:
+with open('data/Rogan_input.txt', 'r', encoding = 'utf-8') as f:
     text = f.read()
 
 # Finding all the unique characters in the input data
@@ -180,22 +193,22 @@ m = model.to(device)
 optimizer = torch.optim.AdamW(m.parameters(), lr=1e-3)
 
 
-for iter in range(max_iters): 
+# for iter in range(max_iters): 
 
-    # every once in a while evaluate loss on train and val sets
-    if iter % eval_interval == 0:
-        losses = estimate_loss()
-        print(f"step{iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
+#     # every once in a while evaluate loss on train and val sets
+#     if iter % eval_interval == 0:
+#         losses = estimate_loss()
+#         print(f"step{iter}: train loss {losses['train']:.4f}, val loss {losses['val']:.4f}")
 
-    # sample a batch of data
-    xb, yb = get_batch('train')
+#     # sample a batch of data
+#     xb, yb = get_batch('train')
 
-    # evaluate the loss
-    logits, loss = model(xb, yb)
-    optimizer.zero_grad(set_to_none=True)
-    loss.backward()
-    optimizer.step()
+#     # evaluate the loss
+#     logits, loss = model(xb, yb)
+#     optimizer.zero_grad(set_to_none=True)
+#     loss.backward()
+#     optimizer.step()
 
 # generate from model
-context = torch.zeros((1, 1), dtype = torch.long, device = device)
-print(decode(m.generate(context, max_new_tokens=500)[0].tolist()))
+# context = torch.zeros((1, 1), dtype = torch.long, device = device)
+# print(decode(m.generate(context, max_new_tokens=500)[0].tolist()))
