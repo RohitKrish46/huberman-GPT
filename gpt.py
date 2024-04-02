@@ -5,7 +5,9 @@ import torch.nn.functional as F
 from common.config_constants import BLOCK_SIZE, N_EMBED, N_HEAD, N_LAYER, DROPOUT, DEVICE
 
 class AttentionHead(nn.Module):
-
+    """
+    Attention head module for attention mechanism.
+    """
     def __init__(self, head_size):
         super().__init__()
         self.key = nn.Linear(N_EMBED, head_size, bias=False)
@@ -29,6 +31,9 @@ class AttentionHead(nn.Module):
 
 
 class MultiHeadAttention(nn.Module):
+    """
+    Multi-head attention module.
+    """
     def __init__(self, num_heads, head_size):
         super().__init__()
         self.heads = nn.ModuleList([AttentionHead(head_size) for _ in range(num_heads)])
@@ -41,19 +46,25 @@ class MultiHeadAttention(nn.Module):
     
 
 class FeedForward(nn.Module):
-        def __init__(self, n_embed):
-            super().__init__()
-            self.net = nn.Sequential(
-                nn.Linear(n_embed, 4 * n_embed),
-                nn.ReLU(),
-                nn.Linear(4* n_embed, n_embed),
-                nn.Dropout(DROPOUT)
-            )
-        def forward(self, x):
-            return self.net(x)
+    """
+    Feedforward neural network module.
+    """
+    def __init__(self, n_embed):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(n_embed, 4 * n_embed),
+            nn.ReLU(),
+            nn.Linear(4* n_embed, n_embed),
+            nn.Dropout(DROPOUT)
+        )
+    def forward(self, x):
+        return self.net(x)
 
 
 class Block(nn.Module):
+    """
+    Transformer block module.
+    """
     def __init__(self, n_embed, n_head):
         super().__init__()
         head_size = n_embed// n_head
@@ -68,6 +79,9 @@ class Block(nn.Module):
         return x
 
 class Huberman_GPT(nn.Module):
+    """
+    Huberman GPT model.
+    """
     def __init__(self):
         super().__init__()
         self.token_embedding_table = nn.Embedding(vocab_size, N_EMBED)
