@@ -8,3 +8,4 @@ models/rogan_model.pth
 models/keypoints_model.pth
 notebooks/.ipynb_checkpoints/Transformer_modelling-checkpoint.ipynb
 notebooks/.ipynb_checkpoints/data_cleaning-checkpoint.ipynb
+gpt_old.py
