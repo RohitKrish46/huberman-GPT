@@ -110,6 +110,16 @@ class Huberman_GPT(nn.Module):
         return logits, loss
     
     def generate(self, idx, max_new_tokens):
+        """
+        Generate new tokens based on input indices using the trained model.
+
+        Args:
+            idx (Tensor): Input indices.
+            max_new_tokens (int): Maximum number of new tokens to generate.
+
+        Returns:
+            Tensor: Generates sequence of new tokens.
+        """
         for _ in range(max_new_tokens):
             idx_cond = idx[:, -BLOCK_SIZE:]
             logits, loss = self(idx_cond)
