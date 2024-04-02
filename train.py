@@ -42,3 +42,5 @@ for iter in range(MAX_ITERS):
     loss.backward()
     optimizer.step()
 
+torch.save(model.state_dict(), "./models/huberman_model.pth")
+

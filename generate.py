@@ -1,4 +1,5 @@
-from gpt import Huberman_GPT, decode, encode
+from gpt import Huberman_GPT
+from data_loader import decode, encode
 from common.config_constants import DEVICE
 import torch
 

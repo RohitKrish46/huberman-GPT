@@ -1,11 +1,11 @@
 hyperparameters:
   batch_size : 64 
   block_size : 420 
-  max_iters : 5000
+  max_iters : 9000
   eval_interval : 500
-  learning_rate : 3e-4
+  learning_rate : 5e-4
   eval_iters : 200
-  n_embed : 320
-  n_head : 5
-  n_layer : 5
+  n_embed : 384
+  n_head : 6
+  n_layer : 6
   dropout : 0.2
