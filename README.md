@@ -1,47 +1,84 @@
 # huberman-GPT
-This repository contains the implementation of a character-level transformer model for text generation, inspired by Andrew Huberman's podcast. The model generates text by learning the patterns and structure of podcast text data at the character level. The model learns to predict the next character in a sequence based on the previous characters, capturing long-range dependencies in the text data.
+Welcome to huberman-GPT, a character-level GPT model trained to generate text inspired by the style, tone, and subject matter of Dr. Andrew Huberman’s neuroscience podcast. This project explores the power of transformers at the character level, focusing on long-range dependencies and text generation fidelity.
+
+## 🧬 Project Overview
+This project is a deep learning implementation of a character-level transformer trained on real podcast transcripts from the Huberman Lab. It uses a GPT-style architecture to generate coherent and stylistically consistent text one character at a time.
+
+Inspired by Andrej Karpathy's work, the model captures intricate dependencies across long sequences without tokenizing words, learning directly from raw characters.
+
+📚 Dataset
+📄 Over 100+ podcast transcripts from Dr. Andrew Huberman’s podcast Download it from [here](https://drive.google.com/drive/folders/1nBfN4QvKHaApCuCGlKg-a4BJm1Ix5k-L).
+
+Stored as .docx files
+
+Preprocessed into plain text format
+
+Split into:
+
+- 85% training
+
+- 15% validation
+
+## 🧠 Model Architecture
+
+| Component  | Value |
+| ------------- | ------------- |
+| Embedding Dimension  | `384`  |
+|  Attention Heads  | `6`  |
+| Transformer Layers  | `6`  |
+| Dropout Ratio  | `0.2` |
+| Sequence Length (Block Size)  | `420`  |
 
 
-## Dataset
-The dataset comprises over 100 word files, each containing transcripts of Dr. Andrew Huberman's podcast episodes.
+The model uses:
 
-Download it from [here](https://drive.google.com/drive/folders/1nBfN4QvKHaApCuCGlKg-a4BJm1Ix5k-L)
+- ✅ Positional embeddings
 
-## Huberman-GPT
-- [gpt.py](./gpt.py) : the GPT model
-- [data_loader.py](./data_loader.py) : prepares the data for training
-- [train.py](./train.py) : training script with optimizer, training loop, model saving etc.
-- [generate.py](./generate.py) : generate text after user's input by loading the saved model
+- ✅ Multi-head self-attention
+
+- ✅ Layer normalization
+
+- ✅ Feed-forward neural network
+
+- ✅ Causal masking for autoregression
 
 
-  
-## Training:
+## ⚙️ Training Configuration
+
+| Hyperparameter  | Value |
+| ------------- | ------------- |
+| Batch Size  | `64`  |
+| Learning Rate  | `5e-4`  |
+| Max Iterations  | `9000`  |
+| Evaluation Interval  | `500` |
+| Evaluation Iterations  | `200` |
+| Optimizer  | `AdamW` |
+
+## 🔥 Final Results
+| Metric  | Value |
+| ------------- | ------------- |
+| Train Loss  | `0.8142`  |
+| Val Loss  | `0.9252`  |
+
+## 🚀 Usage
+
+1. 🔧 Setup
+```
+git clone https://github.com/Rohitkrish46/huberman-GPT.git
+cd huberman-GPT
+pip install -r requirements.txt
+```
+2. 🏋️‍♂️ Train the Model
 ```
 python train.py
 ```
-
-## Text Generation:
+3. 📝 Generate Text
 ```
 python generate.py
 ```
-  
-## Hyperparameters and Training Results
-  ```
-batch_size = 64 
-block_size = 420 
-max_iters = 9000
-eval_interval = 500
-learning_rate = 5e-4
-eval_iters = 200
-n_embd = 384
-n_head = 6
-n_layer = 6
-dropout = 0.2
+   
 
-Train loss 0.8142
-Val loss 0.9252
-```
-## Sample Text Generation
+## 🧪 Sample Generated Text
 
 ```
  So basically the scientists, most people's brain doesn't work, mostly treatments, most ridgentists like me.
@@ -54,7 +91,15 @@ Val loss 0.9252
  Being into that skin root and will allow summing and just really safely speak large.
  It's really a second.
 ```
-## Credits
-Big thanks to [Andrej Karpathy](https://twitter.com/karpathy) or the exceptional [tutorial](https://www.youtube.com/watch?v=kCc8FmEb1nY&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&index=7&t=1s) on transformers and character-level GPT modeling.
+While the model isn't perfect, it does produce structurally and semantically intriguing outputs in the voice and themes of the original podcast content.
 
-Huge appreciation to [Dr. Andrew Huberman](https://twitter.com/hubermanlab) for consistently entertaining with outstanding podcast on understanding ourselves.
+
+## 💡 Inspiration
+- 🧑‍🏫 Andrej Karpathy’s nanoGPT — for demystifying transformer implementations
+
+- 🎧 Dr. Andrew Huberman — for consistently producing neuroscience content that blends rigor with accessibility
+
+## 🙌 Acknowledgements
+- [Andrej Karpathy](https://twitter.com/karpathy) for the GPT inspiration
+
+- [Dr. Andrew Huberman](https://twitter.com/hubermanlab) for his educational work in neuroscience
