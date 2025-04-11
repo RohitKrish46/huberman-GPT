@@ -11,3 +11,4 @@ notebooks/.ipynb_checkpoints/data_cleaning-checkpoint.ipynb
 gpt_old.py
 /venv/
 /.ipynb_checkpoints/
+/__pycache__/
